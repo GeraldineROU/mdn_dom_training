@@ -1,0 +1,74 @@
+<!DOCTYPE html>
+<html lang="en-US">
+<head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Simple DOM example</title>
+    <style>
+        .highlight {
+            color: white;
+            background-color: black;
+            padding: 10px;
+            width: 250px;
+            text-align: center;
+        }
+    </style>
+
+</head>
+<body>
+<section>
+    <img src="dinosaur.png" alt="A red Tyrannosaurus Rex: A two legged dinosaur standing upright like a human, with small arms, and a large head with lots of sharp teeth.">
+    <p>Here we will add a link to the <a href="https://www.mozilla.org/">Mozilla homepage</a></p>
+</section>
+<script >
+    const link = document.querySelector("a");
+    link.textContent = "Mozilla Developper Network";
+    link.href = "https://developer.mozilla.org";
+
+    // initialisation de sect qui sélectionne la balise section
+    const sect = document.querySelector("section");
+
+    // initialisation de para qui crée une balise paragraph
+    const para = document.createElement("p");
+    // On crée du texte dans le paragraphe qui vient d'être créé
+    para.textContent = "We hope you enjoyed the ride.";
+
+    // on utilise une méthode sur sect (l'élément section) pour le rendre parent de para (para va s'afficher dans sect)
+    sect.appendChild(para);
+
+    // initialisation de text qui crée un noeud texte
+    const text = document.createTextNode(
+        " — the premier source for web development knowledge.",
+    );
+
+    // puis on sélectionne le paragraphe qui contient le lien (celui déjà créé avant)
+    const linkPara = document.querySelector("p");
+    //et on lui attribue text en enfant
+    linkPara.appendChild(text);
+
+
+    //on décide de changer : linkPara devient enfant de sect, ce qui a pour conséquence de le mettre sous l'autre paragraphe, tout en bas de la section
+    sect.appendChild(linkPara);
+
+    //Finalement on supprime linkPara
+    //sect.removeChild(linkPara);
+    //ou en l'écrivant ainsi :
+    linkPara.remove();
+    //ou avec une méthode plus ancienne (compatible avec les vieux navigateurs)
+    // linkPara.parentNode.removeChild(linkPara);
+
+    //quelques modifications du style en utilisant des inline styles
+    // para.style.color = "white";
+    // para.style.backgroundColor = "black";
+    // para.style.padding = "10px";
+    // para.style.width = "250px";
+    // para.style.textAlign = "center";
+
+    ///J'ai ajouté un contenu <style> (qui contient le même style que l'étape précédente) dans le head
+    // puis j'utilise la méthode setAttribute sur para, elle prend 2 paramètres : le nom de l'attribut à ajouter à para et sa valeur
+    para.setAttribute("class", "highlight");
+
+
+</script>
+</body>
+</html>
